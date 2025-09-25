@@ -3,50 +3,64 @@ import React from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { cn } from "@/lib/utils";
-import {
-  IconBrandGithub,
-  IconBrandGoogle,
-  IconBrandOnlyfans,
-} from "@tabler/icons-react";
 import { ModeToggle } from "../buttons/theme-change";
-
+import { TermsAndCondition } from "./terms-conditon";
+import { useRouter } from "next/navigation";
 export function Login() {
+  const router = useRouter();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form submitted");
   };
+
+  function PageRedirect() {
+    router.push("/dashboard");
+  }
   return (
-    <div className=" shadow-2xl mx-auto w-full max-w-md rounded bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
-      <h2 className="text-3xl text-center font-bold text-neutral-800 dark:text-neutral-200">
-        Welcome !
-        <ModeToggle />
-      </h2>
-      <form className="my-8" onSubmit={handleSubmit}>
-        <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
-          <LabelInputContainer>
-            <Label htmlFor="firstname">Phone Number</Label>
-            <Input id="firstname" placeholder="Tyler" type="text" />
-          </LabelInputContainer>
-          <LabelInputContainer>
-            <Label htmlFor="lastname">Last name</Label>
-            <Input id="lastname" placeholder="Durden" type="text" />
-          </LabelInputContainer>
+    <div className="p-4">
+      <div className="  items-center shadow-2xl mt-18 rounded-3xl mx-auto w-full max-w-md   bg-white p-6 md:rounded-2xl md:p-8 dark:bg-black">
+        <div className="flex flex-row justify-center">
+          <div>
+            <h2 className="text-3xl text-center font-bold text-neutral-800 dark:text-neutral-200">
+              Welcome !
+            </h2>
+          </div>
+          <div className="ml-4">
+            <ModeToggle />
+          </div>
         </div>
-        <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">Last Name</Label>
-          <Input id="email" placeholder=".com" type="email" />
-        </LabelInputContainer>
 
-        <button
-          className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
-          type="submit"
-        >
-          Sign up &rarr;
-          <BottomGradient />
-        </button>
+        <form className="my-8" onSubmit={handleSubmit}>
+          <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
+            <LabelInputContainer>
+              <Label htmlFor="firstname">Phone Number</Label>
+              <Input id="firstname" placeholder="Tyler" type="text" />
+            </LabelInputContainer>
+            <LabelInputContainer>
+              <Label htmlFor="lastname">Last name</Label>
+              <Input id="lastname" placeholder="Durden" type="text" />
+            </LabelInputContainer>
+          </div>
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="email">Last Name</Label>
+            <Input id="email" placeholder="example@gmail.com" type="email" />
+          </LabelInputContainer>
+          <TermsAndCondition />
 
-        <div className="my-8 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent dark:via-neutral-700" />
-      </form>
+          <button
+            className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
+            type="submit"
+            onClick={() => {
+              PageRedirect();
+            }}
+          >
+            Request Access &rarr;
+            <BottomGradient />
+          </button>
+
+          <div className="my-8 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent dark:via-neutral-700" />
+        </form>
+      </div>
     </div>
   );
 }
