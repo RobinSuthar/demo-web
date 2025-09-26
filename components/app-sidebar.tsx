@@ -95,11 +95,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent
-        onClick={() => {
-          console.log("ASdasd");
-        }}
-      >
+      <SidebarContent>
         <NavMain items={data.navMain} />
 
         <NavSecondary items={data.navSecondary} className="mt-auto" />
